@@ -109,10 +109,13 @@
             mui('.mui-scroll-wrapper').scroll({
             deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
             });
-        + 我们在初始化滑动条的时候，导入的 mui.js ，控制台报错，可能是mui.js用到了'caller','callee',和'arguments' 东西，但是webpack打包好的 bundle.js 中，默认是启用严格模式
+        + 我们在初始化滑动条的时候，导入的 mui.js ，控制台报错，可能是mui.js用到了'caller','callee',和'arguments' 东西，
+        但是webpack打包好的 bundle.js 中，默认是启用严格模式
         + 解决方案：把webpack打包时候的严格模式禁用掉 ：使用插件 babel-plugin-transform-remove-strict-mode
-        +刚进入图片分析页面时，滑动条无法正常工作，如果要初始化滑动条，必须等 DOM 元素加载完毕，使用吧初始化滑动条的代码搬到 mounted 生命周期函数中
-        + 当滑动条 调试OK后发现， tabbar 无法正常工作了， 这时候， 我们需要把每个 tabbar 按钮的样式中 'mui-tab-item' 重新改一下名字
-
+        +刚进入图片分析页面时，滑动条无法正常工作，如果要初始化滑动条，必须等 DOM 元素加载完毕，使用吧初始化滑动条的代码
+        搬到 mounted 生命周期函数中
+        + 当滑动条 调试OK后发现， tabbar 无法正常工作了， 这时候， 我们需要把每个 tabbar 按钮的样式中 'mui-tab-item' 
+        重新改一下名字
+        （。。。）
 
     2. 制作 底部的图片列表
