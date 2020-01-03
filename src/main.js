@@ -34,15 +34,27 @@ import './lib/mui/css/icons-extra.css'
 import './lib/mui/fonts/mui-icons-extra.ttf'
 
 
-// 按需导入Mint UI中的组件
-import { Header, Swipe, SwipeItem, Button} from 'mint-ui'
-// 一定要导入样式表，不然显示不了样式
+// 全部导入Mint-UI  (懒加载时候的小图标不能按需导入，所有要全部导入)
+import MintUI from 'mint-ui'
+Vue.use(MintUI)
+// // 按需导入Mint UI中的组件
+// import { Header, Swipe, SwipeItem, Button, Lazyload} from 'mint-ui'
+// // 一定要导入样式表，不然显示不了样式
 import'mint-ui/lib/style.css'
-Vue.component(Header.name, Header)
-Vue.component(Swipe.name, Swipe)
-Vue.component(SwipeItem.name, SwipeItem)
-Vue.component(Button.name, Button)
+// Vue.component(Header.name, Header)
+// Vue.component(Swipe.name, Swipe)
+// Vue.component(SwipeItem.name, SwipeItem)
+// Vue.component(Button.name, Button)
+// Vue.use(Lazyload);
 
+// 安装图片预览插件
+// import VuePreview from 'vue-preview'
+// Vue.use(VuePreview)
+
+// 安装图片预览插件
+import Viewer from 'v-viewer'
+Vue.use(Viewer)
+import 'viewerjs/dist/viewer.css'
 
 
 

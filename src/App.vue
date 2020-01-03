@@ -41,6 +41,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.mint-header {
+  z-index: 99;
+}
 .app-container {
   padding-top: 40px;
   // 解决切换时出现的滚动条

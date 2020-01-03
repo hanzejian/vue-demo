@@ -1,12 +1,7 @@
 <template>
   <div>
     <!-- 轮播图区域 -->
-    <mt-swipe :auto="4000">
-      <!-- 在组件中，用v-for循环的话，一定要使用 v-key -->
-      <mt-swipe-item v-for="item in swipeList" :key="item.id">
-        <img :src="item.img" />
-      </mt-swipe-item>
-    </mt-swipe>
+    <swiper :lunbotuList="swipeList" :isFull="true"></swiper>
 
     <!-- 九宫格区域 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -23,10 +18,10 @@
         </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/goodslist">
           <img src="./../../images/menu3.png">
           <div class="mui-media-body">商品购买</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
@@ -52,6 +47,7 @@
 
 <script>
 import { Toast } from "mint-ui";
+import swiper from '../subcomponents/swiper.vue'
 
 export default {
   data() {
@@ -77,32 +73,15 @@ export default {
           }
         });
     }
-  }
+  },
+
+  components: {
+    swiper
+  },
 };
 </script>
 
 <style lang='scss' scoped>
-// 轮播图需要手动设置高度
-.mint-swipe {
-  height: 200px;
-
-  .mint-swipe-item {
-    img {
-      width: 375px;
-      height: 200px;
-    }
-    &:nth-child(1) {
-      background-color: red;
-    }
-    &:nth-child(2) {
-      background-color: yellow;
-    }
-    &:nth-child(3) {
-      background-color: green;
-    }
-  }
-}
-
 .mui-grid-view.mui-grid-9{
   background-color: #fff;
   border: none;

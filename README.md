@@ -112,10 +112,42 @@
         + 我们在初始化滑动条的时候，导入的 mui.js ，控制台报错，可能是mui.js用到了'caller','callee',和'arguments' 东西，
         但是webpack打包好的 bundle.js 中，默认是启用严格模式
         + 解决方案：把webpack打包时候的严格模式禁用掉 ：使用插件 babel-plugin-transform-remove-strict-mode
-        +刚进入图片分析页面时，滑动条无法正常工作，如果要初始化滑动条，必须等 DOM 元素加载完毕，使用吧初始化滑动条的代码
+        +刚进入图片分析页面时，滑动条无法正常工作，如果要初始化滑动条，必须等 DOM 元素加载完毕，使用把初始化滑动条的代码
         搬到 mounted 生命周期函数中
         + 当滑动条 调试OK后发现， tabbar 无法正常工作了， 这时候， 我们需要把每个 tabbar 按钮的样式中 'mui-tab-item' 
-        重新改一下名字
-        （。。。）
+        重新改一下名字；
+        + 获取所有分类， 并渲染分类列表
 
     2. 制作 底部的图片列表
+        + 图片列表需要使用懒加载技术， 我们可以使用Mint-UI提供的现成的组件'lazy-load'
+        + 根据'lazy-load'使用文档 尝试使用
+        + 渲染图片列表数据
+
+### 实现了 图片的懒加载改造和 样式美化
+
+### 实现了 点击图片 跳转到 图片详情页面
+
+    1. 在改造 li 成 router-link 的时候， 需要使用 tag 属性指定呀渲染为哪种元素
+
+### 实现 图片详情页面的布局和美化 同时获取数据 渲染页
+
+### 实现 图片详情中 缩略图的功能
+
+    1. 使用插件 v-viewer 这个缩略图插件
+        + 下载viewer包 : npm install v-viewer
+        + 引入：import Viewer from 'v-viewer'
+                Vue.use(Viewer)
+                //记得引入样式表
+                import 'viewerjs/dist/viewer.css'
+        + 渲染数据： <viewer :images="images">
+                     <img v-for="src in images" :src="src" :key="src">
+                    </viewer> 
+    2. 修改样式 使得小图排列有序
+
+### 绘制 商品列表 页面基本结构并美化
+
+### 尝试在手机上 去进行项目的预览和测试
+
+    1. 要保证 手机 和 开发项目的电脑处于同一个 WIFI 环境中，也就是说 手机 可以访问到电脑的IP
+    2. 打开自己项目中的 package.json 文件， 在 dev 脚本中，添加一个 --host指令， 把当前电脑的 WIFI地址，设置为 --host 的指令值；
+    3. 如何查看自己电脑所处 WIFI 的IP？ 在cmd中断中运行"ipconfig", 查看无线网的ip地
