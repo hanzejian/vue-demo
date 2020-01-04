@@ -51,10 +51,20 @@ import'mint-ui/lib/style.css'
 // import VuePreview from 'vue-preview'
 // Vue.use(VuePreview)
 
-// 安装图片预览插件
+// 导入 vuex 并注册
+import store from "./store/index.js"
+// 每次刚进入网站，肯定会调用 main.js 在刚调用的时候，先从本地村相互中，把购物车的数据读出来
+// 每次刷新页面，取得 localStorage  中的 car 数据，使购物车保存上次的数据
+store.state.car = JSON.parse(localStorage.getItem('car') || '[]')
+
+
+
+
+// 安装图片预览插件,并导入样式表
 import Viewer from 'v-viewer'
 Vue.use(Viewer)
 import 'viewerjs/dist/viewer.css'
+
 
 
 
@@ -66,4 +76,5 @@ var vm = new Vue({
   el: '#app',
   render: c=> c(app),
   router, //1.4 挂载路由对象到 vm 实例上 
+  store,  //将 vuex 创建爱你的 store 挂载到 VM 实例上， 只要挂载到了 vm 上， 任何组件都能使用store 来存取数据
 })

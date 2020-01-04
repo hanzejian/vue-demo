@@ -1,8 +1,12 @@
 <template>
   <div class="app-container">
     <!-- 顶部Header区域 -->
-    <mt-header fixed title="vue-demo"></mt-header>
-    
+    <mt-header fixed title="vue-demo">
+      <span slot="left" @click="goBack" v-show="flag">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
+
     <!-- 组件切换的动画 -->
     <transition>
       <!-- 中间的路由router-view区域 -->
@@ -22,7 +26,7 @@
       </router-link>
       <router-link class="mui-tab-item-hzj" to="/shopcar">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-          <span class="mui-badge">0</span>
+          <span class="mui-badge" id="badge">{{ $store.getters.getAllCount }}</span>
         </span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
@@ -30,14 +34,36 @@
         <span class="mui-icon mui-icon-search"></span>
         <span class="mui-tab-label">搜索</span>
       </router-link>
-      
     </nav>
   </div>
 </template>
 <script>
 export default {
-
-}
+  data() {
+    return{
+      flag: false
+    }
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
+    
+  },
+  // 页面刚刷新的时候，flag 默认为 false ,且此时没有触发路由的改变，所有出现了一刷新页面返回键就消失的问题
+  created() {
+    this.flag = this.$route.path === '/home' ? false : true;
+  },
+  watch: {
+    '$route.path':function(newVal) {
+      if (newVal === '/home') {
+        this.flag = false;
+      } else {
+        this.flag = true;
+      }
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -71,30 +97,30 @@ export default {
 
 // 改类名，解决 tabbar 无法切换的问题
 .mui-bar-tab .mui-tab-item-hzj.mui-active {
-    color: #007aff;
+  color: #007aff;
 }
 .mui-bar-tab .mui-tab-item-hzj {
-    display: table-cell;
-    overflow: hidden;
-    width: 1%;
-    height: 50px;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    color: #929292;
+  display: table-cell;
+  overflow: hidden;
+  width: 1%;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #929292;
 }
 .mui-bar-tab .mui-tab-item-hzj .mui-icon {
-    top: 3px;
-    width: 24px;
-    height: 24px;
-    padding-top: 0;
-    padding-bottom: 0;
+  top: 3px;
+  width: 24px;
+  height: 24px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
-.mui-bar-tab .mui-tab-item-hzj .mui-icon~.mui-tab-label {
-    font-size: 11px;
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.mui-bar-tab .mui-tab-item-hzj .mui-icon ~ .mui-tab-label {
+  font-size: 11px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
