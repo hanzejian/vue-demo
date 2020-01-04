@@ -1,4 +1,13 @@
-# 由vue-cli3构建的项目
+# 本项目是由vue-cli3构建
+
+    1.下载项目：打开cmd，切换到到指定目录，输入指令
+    git clone https://github.com/hanzejian/vue-demo
+    2.安装 npm 依赖包
+    npm install
+    3.运行项目：
+    npm run serve
+    4.打包上线：
+    npm run build
 
 ## 制作首页 APP
 
