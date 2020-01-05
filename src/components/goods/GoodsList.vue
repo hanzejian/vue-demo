@@ -59,11 +59,11 @@ export default {
   methods: {
     getGoodsList() {
       // 获取商品列表
-      this.$http
+      this.axios
         .get("api/getgoods?pageindex=" + this.pageindex)
         .then(result => {
-          if (result.body.status === 0) {
-            this.goodslist = this.goodslist.concat(result.body.message);
+          if (result.data.status === 0) {
+            this.goodslist = this.goodslist.concat(result.data.message);
           }
         });
     },

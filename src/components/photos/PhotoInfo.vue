@@ -42,23 +42,23 @@ export default {
   methods: {
     getPhotoInfo() {
       // 获取图片的详情
-      this.$http.get("api/getimageInfo/" + this.id).then(result => {
-        if (result.body.status === 0) {
-          this.photoinfo = result.body.message[0];
+      this.axios.get("api/getimageInfo/" + this.id).then(result => {
+        if (result.data.status === 0) {
+          this.photoinfo = result.data.message[0];
         }
       });
     },
     getThumbs() {
       // 获取缩略图
-      this.$http.get("api/getthumimages/" + this.id).then(result => {
-        if (result.body.status === 0) {
+      this.axios.get("api/getthumimages/" + this.id).then(result => {
+        if (result.data.status === 0) {
           // 循环每个图片数据， 补全图片的宽和高
-          result.body.message.forEach(item => {
+          result.data.message.forEach(item => {
             item.w = 600;
             item.h = 400;
           });
           // 把完整的数据保存到 list 中
-          this.list = result.body.message;
+          this.list = result.data.message;
         }
       });
     },

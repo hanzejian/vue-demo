@@ -57,19 +57,19 @@ export default {
   methods: {
     getAllCategory() {
       // 获取所有的图片分类
-      this.$http.get("api/getimgcategory").then(result => {
-        if (result.body.status === 0) {
+      this.axios.get("api/getimgcategory").then(result => {
+        if (result.data.status === 0) {
           // 手动拼接出一个最完整的 分类列表
-          result.body.message.unshift({ title: "全部", id: 0 });
-          this.cates = result.body.message;
+          result.data.message.unshift({ title: "全部", id: 0 });
+          this.cates = result.data.message;
         }
       });
     },
     getPhotoListByCateId(cateId) {
       // 根据 分类Id ，获取图片列表
-      this.$http.get("api/getimages/" + cateId).then(result => {
-        if (result.body.status === 0) {
-          this.list = result.body.message;
+      this.axios.get("api/getimages/" + cateId).then(result => {
+        if (result.data.status === 0) {
+          this.list = result.data.message;
         }
       });
     }

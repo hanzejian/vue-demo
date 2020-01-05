@@ -82,21 +82,21 @@ export default {
   },
   methods: {
     getLunbotu() {
-      this.$http.get('api/getthumimages/' + this.id).then(result => {
-        if (result.body.status === 0) {
+      this.axios.get('api/getthumimages/' + this.id).then(result => {
+        if (result.data.status === 0) {
           // 先循环轮播图数组的每一项，为 item 添加 img 属性， 因为 轮播图组件中，只认识item.img, 不认识item.src
-          result.body.message.forEach(item => {
+          result.data.message.forEach(item => {
             item.img = item.src;
           })
-          this.lunbotu = result.body.message;
+          this.lunbotu = result.data.message;
         }
       })
     },
     getGoodsInfo() {
       // 获取商品的信息
-      this.$http.get('api/goods/getinfo/' + this.id).then(result => {
-        if(result.body.status === 0) {
-          this.goodsinfo = result.body.message[0];
+      this.axios.get('api/goods/getinfo/' + this.id).then(result => {
+        if(result.data.status === 0) {
+          this.goodsinfo = result.data.message[0];
         }
       })
     },

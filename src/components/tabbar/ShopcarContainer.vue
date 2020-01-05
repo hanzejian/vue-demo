@@ -66,9 +66,9 @@ export default {
         return;
       }
       // 获取购物车商品列表
-      this.$http.get('api/goods/getshopcarlist/' + idArr.join(",")).then(result => {
-        if(result.body.status === 0) {
-          this.goodslist = result.body.message;
+      this.axios.get('api/goods/getshopcarlist/' + idArr.join(",")).then(result => {
+        if(result.data.status === 0) {
+          this.goodslist = result.data.message;
         }
       })
     },

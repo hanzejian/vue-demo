@@ -35,9 +35,9 @@ export default {
     },
     methods: {
         getNewsInfo() {  //获取新闻详情
-            this.$http.get('api/getnew/' + this.id).then(result => {
-                if(result.body.status === 0) {
-                    this.newsinfo = result.body.message[0];
+            this.axios.get('api/getnew/' + this.id).then(result => {
+                if(result.data.status === 0) {
+                    this.newsinfo = result.data.message[0];
                 } else {
                     Toast("获取新闻失败！");
                 }

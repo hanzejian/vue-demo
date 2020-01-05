@@ -17,14 +17,25 @@ Vue.filter('dataFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
 
 
 
-// 2.1 导入 vue-resource
-import VueResource from 'vue-resource'
-// 2.2 安装 vue-resource
-Vue.use(VueResource) 
-// 设置请求的根路径
-Vue.http.options.root = 'http://www.liulongbin.top:3005'
+// 导入axios
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+// 全局注册 axios
+Vue.use(VueAxios, axios)
+// 设置默认请求地址
+axios.defaults.baseURL='http://www.liulongbin.top:3005'
 // 全局设置 post 时候表单数据格式组织格式  application/x-www-form-urlencoded
-Vue.http.options.emulateJSON = true;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
+
+// // 2.1 导入 vue-resource
+// import VueResource from 'vue-resource'
+// // 2.2 安装 vue-resource
+// Vue.use(VueResource) 
+// // 设置请求的根路径
+// Vue.http.options.root = 'http://www.liulongbin.top:3005'
+// // 全局设置 post 时候表单数据格式组织格式  application/x-www-form-urlencoded
+// Vue.http.options.emulateJSON = true;
 
 
 // 导入MUI的样式
@@ -47,9 +58,6 @@ import'mint-ui/lib/style.css'
 // Vue.component(Button.name, Button)
 // Vue.use(Lazyload);
 
-// 安装图片预览插件
-// import VuePreview from 'vue-preview'
-// Vue.use(VuePreview)
 
 // 导入 vuex 并注册
 import store from "./store/index.js"

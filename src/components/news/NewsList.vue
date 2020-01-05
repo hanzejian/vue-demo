@@ -32,10 +32,10 @@ export default {
   },
   methods: {
     getNewsList() { //获取新闻列表
-      this.$http.get('api/getnewsList').then(result => {
-        if (result.body.status === 0) {
+      this.axios.get('api/getnewsList').then(result => {
+        if (result.data.status === 0) {
           // 获取成功，就把数据保存到data上
-          this.newsList = result.body.message;
+          this.newsList = result.data.message;
         } else {
           Toast("获取新闻列表失败！");
         }

@@ -61,12 +61,12 @@ export default {
   methods: {
     getSwipe() {
       //获取轮播图数据的方法
-      this.$http
+      this.axios
         .get("api/getlunbo")
         .then(result => {
-          if (result.body.status === 0) {
+          if (result.data.status === 0) {
             //成功了
-            this.swipeList = result.body.message;
+            this.swipeList = result.data.message;
           } else {
             //失败的
             Toast("加载轮播图失败");
