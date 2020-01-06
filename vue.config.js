@@ -1,4 +1,3 @@
-
 // gzip压缩
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
@@ -7,6 +6,19 @@ const isProduction = process.env.NODE_ENV !== 'development'
 
 
 module.exports = {
+    publicPath: process.env.NODE_ENV === "production" ? "./" : "/",
+    outputDir: "dist",
+    assetsDir: "assets",
+    filenameHashing: true,
+    indexPath: "myIndex.html",
+
+    //webpack配置
+    configureWebpack: {
+        //关闭 webpack 的性能提示
+        performance: {
+            hints: false
+        }
+    },
     productionSourceMap: false,
     chainWebpack: config => {
         // ============压缩图片 start============
@@ -14,7 +26,9 @@ module.exports = {
             .rule('images')
             .use('image-webpack-loader')
             .loader('image-webpack-loader')
-            .options({ bypassOnDebug: true })
+            .options({
+                bypassOnDebug: true
+            })
             .end()
         // ============压缩图片 end============
 

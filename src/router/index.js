@@ -16,7 +16,7 @@ import GoodsComment from '../components/goods/GoodsComment'
 
 // 创建路由对象
 var router = new VueRouter({
-  mode: "history",
+  // mode: "history",
   routes: [//配置路由规则
     { path: '/', redirect: '/home' },
     { path: '/home', component: HomeContainer },
