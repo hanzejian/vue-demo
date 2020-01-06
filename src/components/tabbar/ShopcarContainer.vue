@@ -114,7 +114,7 @@ export default {
       justify-content: space-between;
 
       p {
-        display: felx;
+        display: flex;
         justify-content: space-between;
 
         .price {
